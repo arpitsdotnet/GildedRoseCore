@@ -13,9 +13,6 @@ namespace GildedRoseCore.Console
             _items = items;
         }
 
-        //2. Constants Variables for Numbers
-        private const int MAX_QUALITY = 50;
-
         public void UpdateQuality()
         {
 
@@ -30,16 +27,15 @@ namespace GildedRoseCore.Console
 
         public void BackstagePassesUpdate(Item item)
         {
-            if (item.Quality < MAX_QUALITY) item.Quality = item.Quality + 1;
-            if (item.Quality < MAX_QUALITY && item.SellIn < 11) item.Quality = item.Quality + 1;
-            if (item.Quality < MAX_QUALITY && item.SellIn < 6) item.Quality = item.Quality + 1;
+            if (item.Quality < 50) item.Quality = item.Quality + 1;
+            if (item.Quality < 50 && item.SellIn < 11) item.Quality = item.Quality + 1;
+            if (item.Quality < 50 && item.SellIn < 6) item.Quality = item.Quality + 1;
             if (item.SellIn <= 0) item.Quality = item.Quality - item.Quality;
         }
 
         public void AgedBrieUpdate(Item item)
         {
-            if (item.SellIn < 0 && item.Quality < MAX_QUALITY) item.Quality = item.Quality + 1;
-            if (item.Quality < MAX_QUALITY) item.Quality = item.Quality + 1;
+            new AgedBrieItem(item).Update();
         }
 
         public void SulfurasUpdate(Item item)
