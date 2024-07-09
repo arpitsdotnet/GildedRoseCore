@@ -15,34 +15,16 @@ namespace GildedRoseCore.Console
 
         public void UpdateQuality()
         {
-
             foreach (var item in _items)
             {
-                if (item.Name == Constants.AGED_BRIE) AgedBrieUpdate(item);
-                else if (item.Name == Constants.BACKSTAGE_PASSES_TO_A_TAFKAL80ETC_CONCERT) BackstagePassesUpdate(item);
-                else if (item.Name == Constants.SULFURAS_HAND_OF_RAGNAROS) SulfurasUpdate(item);
-                else NormalUpdate(item);
+                switch (item.Name)
+                {
+                    case Constants.AGED_BRIE: new AgedBrieItem(item).Update(); break;
+                    case Constants.BACKSTAGE_PASSES_TO_A_TAFKAL80ETC_CONCERT: new BackstagePassesItem(item).Update(); break;
+                    case Constants.SULFURAS_HAND_OF_RAGNAROS: new SulfurasItem(item).Update(); break;
+                    default: new NormalItem(item).Update(); break;
+                };
             }
-        }
-
-        public void BackstagePassesUpdate(Item item)
-        {
-            new BackstagePassesItem(item).Update();
-        }
-
-        public void AgedBrieUpdate(Item item)
-        {
-            new AgedBrieItem(item).Update();
-        }
-
-        public void SulfurasUpdate(Item item)
-        {
-            new SulfurasItem(item).Update();
-        }
-
-        public void NormalUpdate(Item item)
-        {
-            new NormalItem(item).Update();
         }
     }
 
