@@ -2,11 +2,8 @@
 {
     public class AgedBrieItem : UpdatableItem
     {
-        private readonly Item item;
-
-        public AgedBrieItem(Item item)
+        public AgedBrieItem(Item item) : base(item)
         {
-            this.item = item;
         }
 
         public override void Update()

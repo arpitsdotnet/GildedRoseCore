@@ -2,11 +2,8 @@
 {
     public class SulfurasItem : UpdatableItem
     {
-        private readonly Item item;
-
-        public SulfurasItem(Item item)
+        public SulfurasItem(Item item) : base(item)
         {
-            this.item = item;
         }
 
         public override void Update()

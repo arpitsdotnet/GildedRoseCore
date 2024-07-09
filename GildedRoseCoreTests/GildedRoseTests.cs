@@ -12,7 +12,7 @@ namespace Tests
         public void UpdateQuality_ShouldReduceSellinBy1_WhenNameIsOrdinary()
         {
             // Given the Item has Sellin days of 5
-            var fooItem = CreateItem("Foo",5,5);
+            var fooItem = CreateItem("Foo", 5, 5);
             var sut = CreateGildedRose(fooItem);
 
             // When the Quality update occures
@@ -197,21 +197,6 @@ namespace Tests
         }
 
         [Fact]
-        // - "Conjured" items degrade in Quality twice as fast as normal items
-        public void UpdateQuality_ShouldDecreaseQualityBy2_WhenItemConjured()
-        {
-            // Given the item is Conjured and it's quality is 4
-            var conjuredItem = CreateItem(Constants.CONJURED_MANA_CAKE, 4, 5);
-            var sut = CreateGildedRose(conjuredItem);
-
-            // When the quality update occures
-            sut.UpdateQuality();
-
-            // Then the Quality of the item is 2
-            Assert.Equal(2, conjuredItem.Quality);
-        }
-
-        [Fact]
         // - An item can never have its Quality increase above 50,
         // - however "Sulfuras" is a legendary item and as such its Quality is 80 and it never alters.
 
@@ -228,6 +213,26 @@ namespace Tests
             Assert.Equal(80, sulfurasItem.Quality);
         }
 
+        [Fact]
+        // - "Conjured" items degrade in Quality twice as fast as normal items
+        public void UpdateQuality_ShouldDecreaseQualityBy2_WhenItemConjured()
+        {
+            // Given the item is Conjured and it's quality is 4
+            var conjuredItem = CreateItem(Constants.CONJURED_MANA_CAKE, 4, 5);
+            var sut = CreateGildedRose(conjuredItem);
+            var newUpdateItemDictionary = new Dictionary<string, Func<Item, UpdatableItem>>
+            {
+                { Constants.CONJURED_MANA_CAKE, (item) => new ConjuredItem(item) }
+            };
+            sut.UpdatableItemsTable = newUpdateItemDictionary;
+
+            // When the quality update occures
+            sut.UpdateQuality();
+
+            // Then the Quality of the item is 2
+            Assert.Equal(2, conjuredItem.Quality);
+        }
+
 
 
         private static Item CreateItem(string name, int quality, int sellin) =>
@@ -236,5 +241,18 @@ namespace Tests
         private static GildedRose CreateGildedRose(Item newItem) =>
             new GildedRose(new List<Item> { newItem });
 
+    }
+
+    public class ConjuredItem : UpdatableItem
+    {
+        public ConjuredItem(Item item) : base(item)
+        {
+
+        }
+
+        public override void Update()
+        {
+            item.Quality = item.Quality - 2;
+        }
     }
 }

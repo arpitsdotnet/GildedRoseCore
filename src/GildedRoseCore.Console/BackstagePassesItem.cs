@@ -2,11 +2,8 @@
 {
     public class BackstagePassesItem : UpdatableItem
     {
-        private readonly Item item;
-
-        public BackstagePassesItem(Item item)
+        public BackstagePassesItem(Item item) : base(item)
         {
-            this.item = item;
         }
 
         public override void Update()

@@ -2,11 +2,8 @@
 {
     public class NormalItem : UpdatableItem
     {
-        private readonly Item item;
-
-        public NormalItem(Item item)
+        public NormalItem(Item item) : base(item)
         {
-            this.item = item;
         }
 
         public override void Update()
