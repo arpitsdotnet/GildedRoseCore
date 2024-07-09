@@ -218,7 +218,7 @@ namespace Tests
         public void UpdateQuality_ShouldDecreaseQualityBy2_WhenItemConjured()
         {
             // Given the item is Conjured and it's quality is 4
-            var conjuredItem = CreateItem(Constants.CONJURED_MANA_CAKE, 4, 5);
+            var conjuredItem = CreateItem(Constants.CONJURED_MANA_CAKE, 10, 5);
             var sut = CreateGildedRose(conjuredItem);
             var newUpdateItemDictionary = new Dictionary<string, Func<Item, UpdatableItem>>
             {
@@ -230,7 +230,8 @@ namespace Tests
             sut.UpdateQuality();
 
             // Then the Quality of the item is 2
-            Assert.Equal(2, conjuredItem.Quality);
+            Assert.Equal(8, conjuredItem.Quality);
+            Assert.Equal(4, conjuredItem.SellIn);
         }
 
 
@@ -241,18 +242,5 @@ namespace Tests
         private static GildedRose CreateGildedRose(Item newItem) =>
             new GildedRose(new List<Item> { newItem });
 
-    }
-
-    public class ConjuredItem : UpdatableItem
-    {
-        public ConjuredItem(Item item) : base(item)
-        {
-
-        }
-
-        public override void Update()
-        {
-            item.Quality = item.Quality - 2;
-        }
     }
 }
