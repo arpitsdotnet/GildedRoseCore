@@ -37,6 +37,7 @@ namespace GildedRoseCore.Console
 
         public void SulfurasUpdate(Item item)
         {
+            new SulfurasItem(item).Update();
         }
 
         public void NormalUpdate(Item item)
