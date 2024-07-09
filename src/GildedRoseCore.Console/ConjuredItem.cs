@@ -10,6 +10,7 @@
         public override void Update()
         {
             item.Quality = item.Quality - 2;
+            item.SellIn = item.SellIn - 1;
         }
     }
 }

@@ -220,12 +220,7 @@ namespace Tests
             // Given the item is Conjured and it's quality is 4
             var conjuredItem = CreateItem(Constants.CONJURED_MANA_CAKE, 10, 5);
             var sut = CreateGildedRose(conjuredItem);
-            var newUpdateItemDictionary = new Dictionary<string, Func<Item, UpdatableItem>>
-            {
-                { Constants.CONJURED_MANA_CAKE, (item) => new ConjuredItem(item) }
-            };
-            sut.UpdatableItemsTable = newUpdateItemDictionary;
-
+            
             // When the quality update occures
             sut.UpdateQuality();
 

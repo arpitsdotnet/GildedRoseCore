@@ -27,6 +27,7 @@ namespace GildedRoseCore.Console
             { Constants.AGED_BRIE , (item)=> new AgedBrieItem(item) },
             { Constants.BACKSTAGE_PASSES_TO_A_TAFKAL80ETC_CONCERT , (item)=> new BackstagePassesItem(item) },
             { Constants.SULFURAS_HAND_OF_RAGNAROS , (item)=> new SulfurasItem(item) },
+            { Constants.CONJURED_MANA_CAKE, (item) => new ConjuredItem(item) },
             { Constants.DEFAULT , (item)=> new NormalItem(item) }
         };
 
