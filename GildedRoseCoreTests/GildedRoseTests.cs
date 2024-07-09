@@ -196,20 +196,20 @@ namespace Tests
             Assert.Equal(0, backstagePassesItem.Quality);
         }
 
-        //[Fact]
-        //// - "Conjured" items degrade in Quality twice as fast as normal items
-        //public void UpdateQuality_Should_When()
-        //{
-        //    // Given the quality of an item should not increase
-        //    var agedBrieItem = CreateItem(Constants.AGED_BRIE, 50, 5);
-        //    var sut = CreateGildedRose(agedBrieItem);
+        [Fact]
+        // - "Conjured" items degrade in Quality twice as fast as normal items
+        public void UpdateQuality_ShouldDecreaseQualityBy2_WhenItemConjured()
+        {
+            // Given the item is Conjured and it's quality is 4
+            var conjuredItem = CreateItem(Constants.CONJURED_MANA_CAKE, 4, 5);
+            var sut = CreateGildedRose(conjuredItem);
 
-        //    // When the quality update occures
-        //    sut.UpdateQuality();
+            // When the quality update occures
+            sut.UpdateQuality();
 
-        //    // Then the Quality is still 50
-        //    Assert.Equal(50, agedBrieItem.Quality);
-        //}
+            // Then the Quality of the item is 2
+            Assert.Equal(2, conjuredItem.Quality);
+        }
 
         [Fact]
         // - An item can never have its Quality increase above 50,
