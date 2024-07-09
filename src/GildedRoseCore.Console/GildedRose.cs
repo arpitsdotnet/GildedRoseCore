@@ -26,7 +26,7 @@ namespace GildedRoseCore.Console
                     {
                         if (item.Name != Constants.SULFURAS_HAND_OF_RAGNAROS)
                         {
-                            DecreaseQualityByOne(item);
+                            item.Quality = item.Quality - 1;
                         }
                     }
                 }
@@ -34,24 +34,18 @@ namespace GildedRoseCore.Console
                 {
                     if (item.Quality < MAX_QUALITY)
                     {
-                        IncreaseQualityByOne(item);
+                        item.Quality = item.Quality + 1;
 
                         if (item.Name == Constants.BACKSTAGE_PASSES_TO_A_TAFKAL80ETC_CONCERT)
                         {
-                            if (item.SellIn < 11)
+                            if (item.SellIn < 11 && item.Quality < MAX_QUALITY)
                             {
-                                if (item.Quality < MAX_QUALITY)
-                                {
-                                    IncreaseQualityByOne(item);
-                                }
+                                item.Quality = item.Quality + 1;
                             }
 
-                            if (item.SellIn < 6)
+                            if (item.SellIn < 6 && item.Quality < MAX_QUALITY)
                             {
-                                if (item.Quality < MAX_QUALITY)
-                                {
-                                    IncreaseQualityByOne(item);
-                                }
+                                item.Quality = item.Quality + 1;
                             }
                         }
                     }
@@ -59,7 +53,7 @@ namespace GildedRoseCore.Console
 
                 if (item.Name != Constants.SULFURAS_HAND_OF_RAGNAROS)
                 {
-                    DecreaseSellInByOne(item);
+                    item.SellIn = item.SellIn - 1;
                 }
 
                 if (item.SellIn < 0)
@@ -68,48 +62,25 @@ namespace GildedRoseCore.Console
                     {
                         if (item.Name != Constants.BACKSTAGE_PASSES_TO_A_TAFKAL80ETC_CONCERT)
                         {
-                            if (item.Quality > 0)
+                            if (item.Quality > 0 && item.Name != Constants.SULFURAS_HAND_OF_RAGNAROS)
                             {
-                                if (item.Name != Constants.SULFURAS_HAND_OF_RAGNAROS)
-                                {
-                                    DecreaseQualityByOne(item);
-                                }
+                                item.Quality = item.Quality - 1;
                             }
                         }
                         else
                         {
-                            DecreaseQualityByQuality(item);
+                            item.Quality = item.Quality - item.Quality;
                         }
                     }
                     else
                     {
                         if (item.Quality < MAX_QUALITY)
                         {
-                            IncreaseQualityByOne(item);
+                            item.Quality = item.Quality + 1;
                         }
                     }
                 }
             }
-        }
-
-        private void DecreaseQualityByQuality(Item item)
-        {
-            item.Quality = item.Quality - item.Quality;
-        }
-
-        private void DecreaseSellInByOne(Item item)
-        {
-            item.SellIn = item.SellIn - 1;
-        }
-
-        private void DecreaseQualityByOne(Item item)
-        {
-            item.Quality = item.Quality - 1;
-        }
-
-        private void IncreaseQualityByOne(Item item)
-        {
-            item.Quality = item.Quality + 1;
         }
     }
 }
