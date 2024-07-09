@@ -1,6 +1,6 @@
 ﻿namespace GildedRoseCore.Console
 {
-    public class SulfurasItem : IUpdatableItem
+    public class SulfurasItem : UpdatableItem
     {
         private readonly Item item;
 
@@ -9,8 +9,9 @@
             this.item = item;
         }
 
-        public void Update()
+        public override void Update()
         {
+            return;
         }
     }
 

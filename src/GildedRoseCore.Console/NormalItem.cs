@@ -1,6 +1,6 @@
 ﻿namespace GildedRoseCore.Console
 {
-    public class NormalItem : IUpdatableItem
+    public class NormalItem : UpdatableItem
     {
         private readonly Item item;
 
@@ -9,7 +9,7 @@
             this.item = item;
         }
 
-        public void Update()
+        public override void Update()
         {
             if (item.Quality > 0) item.Quality = item.Quality - 1;
             item.SellIn = item.SellIn - 1;

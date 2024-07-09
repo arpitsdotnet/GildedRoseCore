@@ -21,7 +21,7 @@ namespace GildedRoseCore.Console
             }
         }
 
-        public IUpdatableItem CreateUpdatableItem(Item item)
+        public UpdatableItem CreateUpdatableItem(Item item)
         {
             switch (item.Name)
             {
