@@ -1,6 +1,6 @@
 ﻿namespace GildedRoseCore.Console
 {
-    public class AgedBrieItem
+    public class AgedBrieItem : IUpdatableItem
     {
         private readonly Item item;
 

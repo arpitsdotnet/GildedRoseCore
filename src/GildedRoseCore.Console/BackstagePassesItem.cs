@@ -1,6 +1,6 @@
 ﻿namespace GildedRoseCore.Console
 {
-    public class BackstagePassesItem
+    public class BackstagePassesItem : IUpdatableItem
     {
         private readonly Item item;
 
