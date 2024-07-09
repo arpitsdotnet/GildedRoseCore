@@ -38,12 +38,12 @@ namespace GildedRoseCore.Console
 
                         if (item.Name == Constants.BACKSTAGE_PASSES_TO_A_TAFKAL80ETC_CONCERT)
                         {
-                            if (item.SellIn < 11 && item.Quality < MAX_QUALITY)
+                            if (item.SellIn < 11)
                             {
                                 item.Quality = item.Quality + 1;
                             }
 
-                            if (item.SellIn < 6 && item.Quality < MAX_QUALITY)
+                            if (item.SellIn < 6)
                             {
                                 item.Quality = item.Quality + 1;
                             }
