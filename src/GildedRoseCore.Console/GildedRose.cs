@@ -17,14 +17,19 @@ namespace GildedRoseCore.Console
         {
             foreach (var item in _items)
             {
-                switch (item.Name)
-                {
-                    case Constants.AGED_BRIE: new AgedBrieItem(item).Update(); break;
-                    case Constants.BACKSTAGE_PASSES_TO_A_TAFKAL80ETC_CONCERT: new BackstagePassesItem(item).Update(); break;
-                    case Constants.SULFURAS_HAND_OF_RAGNAROS: new SulfurasItem(item).Update(); break;
-                    default: new NormalItem(item).Update(); break;
-                };
+                CreateUpdatableItem(item).Update();
             }
+        }
+
+        public IUpdatableItem CreateUpdatableItem(Item item)
+        {
+            switch (item.Name)
+            {
+                case Constants.AGED_BRIE: return new AgedBrieItem(item);
+                case Constants.BACKSTAGE_PASSES_TO_A_TAFKAL80ETC_CONCERT: return new BackstagePassesItem(item);
+                case Constants.SULFURAS_HAND_OF_RAGNAROS: return new SulfurasItem(item);
+                default: return new NormalItem(item);
+            };
         }
     }
 
