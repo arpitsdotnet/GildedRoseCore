@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace GildedRoseCore.Console
@@ -21,15 +22,17 @@ namespace GildedRoseCore.Console
             }
         }
 
+        public Dictionary<string, Func<Item, UpdatableItem>> UpdatableItemsTable = new Dictionary<string, Func<Item, UpdatableItem>>
+        {
+            { Constants.AGED_BRIE , (item)=> new AgedBrieItem(item) },
+            { Constants.BACKSTAGE_PASSES_TO_A_TAFKAL80ETC_CONCERT , (item)=> new BackstagePassesItem(item) },
+            { Constants.SULFURAS_HAND_OF_RAGNAROS , (item)=> new SulfurasItem(item) },
+            { Constants.DEFAULT , (item)=> new NormalItem(item) }
+        };
+
         public UpdatableItem CreateUpdatableItem(Item item)
         {
-            switch (item.Name)
-            {
-                case Constants.AGED_BRIE: return new AgedBrieItem(item);
-                case Constants.BACKSTAGE_PASSES_TO_A_TAFKAL80ETC_CONCERT: return new BackstagePassesItem(item);
-                case Constants.SULFURAS_HAND_OF_RAGNAROS: return new SulfurasItem(item);
-                default: return new NormalItem(item);
-            };
+            return UpdatableItemsTable.First((kvp) => (kvp.Key.Equals(item.Name) || kvp.Key.Equals(Constants.DEFAULT))).Value(item);
         }
     }
 

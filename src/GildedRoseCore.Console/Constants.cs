@@ -3,6 +3,7 @@
     public static class Constants
     {
         //1. Constants Variables for Strings
+        public const string DEFAULT = "Default";
         public const string DEXTERITY_VEST = "+5 Dexterity Vest";
         public const string AGED_BRIE = "Aged Brie";
         public const string ELIXIR_OF_THE_MONGOOSE = "Elixir of the Mongoose";
